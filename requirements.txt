@@ -1,0 +1,6 @@
+cat << EOF > requirements.txt
+pandas
+scikit-learn
+seaborn
+matplotlib
+EOF

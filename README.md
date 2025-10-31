@@ -1,4 +1,3 @@
-cat << EOF > README.md
 # Análisis de Transacciones del Supermercado
 
 ## 1. El Punto de Partida
@@ -11,4 +10,3 @@ Para hacerlo, seguiremos nuestro *playbook* profesional:
 2.  **Explicación (No Supervisado):** Una vez que tengamos el modelo y su `feature_importance`, daremos un paso atrás. Usaremos **Clustering** para explorar la estructura natural de los datos.
 
 La pregunta final será: ¿Los "grupos" que descubra el clustering nos ayudarán a entender *por qué* el modelo predictivo toma las decisiones que toma? Vamos a ello.
-EOF

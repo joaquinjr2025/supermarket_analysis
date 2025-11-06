@@ -1,7 +1,6 @@
 # Análisis de Transacciones de Supermercado con RF y K-Means
 
-Análisis híbrido (supervisado y no supervisado) sobre un dataset de transacciones para predecir el valor de la compra y segmentar patrones de consumo. Este proyecto forma parte de mi portafolio de Data Science.
-
+Análisis híbrido (supervisado y no supervisado) sobre un dataset de transacciones para predecir el valor de la compra y segmentar patrones de consumo.
 ---
 
 ### 1. Objetivo

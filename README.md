@@ -1,12 +1,43 @@
-# Análisis de Transacciones del Supermercado
+# Análisis de Transacciones de Supermercado con RF y K-Means
 
-## 1. El Punto de Partida
+Análisis híbrido (supervisado y no supervisado) sobre un dataset de transacciones para predecir el valor de la compra y segmentar patrones de consumo. Este proyecto forma parte de mi portafolio de Data Science.
 
-Iniciamos este análisis con el dataset `supermercado.csv`. El objetivo principal es claro: tenemos una variable objetivo, `total` ('high' o 'low'), y queremos construir un modelo de Machine Learning que pueda predecirla.
+---
 
-Para hacerlo, seguiremos nuestro *playbook* profesional:
+### 1. Objetivo
 
-1.  **Predicción (Supervisado):** Construiremos un modelo `RandomForest` robusto. Esto implica separarlo en `train`, `val` y `test`, usar `Pipelines`, optimizarlo con `GridSearchCV` y, lo más importante, vigilar y corregir el sobreajuste para tener un modelo que generalice bien.
-2.  **Explicación (No Supervisado):** Una vez que tengamos el modelo y su `feature_importance`, daremos un paso atrás. Usaremos **Clustering** para explorar la estructura natural de los datos.
+El proyecto tiene un doble objetivo:
+* **Clasificación:** Desarrollar un modelo robusto (`RandomForest`) capaz de predecir si el valor de una transacción será 'high' o 'low'.
+* **Clustering:** Identificar segmentos de clientes (`KMeans`) basándose en sus patrones de compra para entender el *porqué* detrás de las predicciones.
 
-La pregunta final será: ¿Los "grupos" que descubra el clustering nos ayudarán a entender *por qué* el modelo predictivo toma las decisiones que toma? Vamos a ello.
+---
+
+### 2. Metodología
+
+El notebook `supermercado.ipynb` sigue los siguientes pasos:
+
+* **Carga y EDA:** Carga de datos y análisis exploratorio para entender las distribuciones.
+* **Ingeniería de Características:** Uso de la variable `cantidad_departamentos` (creada previamente) como un predictor clave.
+* **Preprocesamiento:** Implementación de un `Pipeline` y `ColumnTransformer` de Scikit-learn para aplicar `OneHotEncoder` a variables categóricas y `StandardScaler` a numéricas.
+* **Modelado (Clasificación):** Entrenamiento de un `RandomForestClassifier` dentro del pipeline.
+* **Optimización de Hiperparámetros:** Sustitución de `GridSearchCV` por **Optuna** para una búsqueda bayesiana más eficiente, enfocada en maximizar el F1-Score y combatir el sobreajuste.
+* **Modelado (Clustering):** Entrenamiento de `KMeans` sobre los datos preprocesados.
+* **Selección de K:** Elección de **K=2** basándose en el Método del Codo y la Puntuación de Silueta.
+* **Interpretación:** Análisis de los 2 clusters (identificados como "Comprador de Conveniencia" vs. "Comprador de Despensa") y conexión de estos hallazgos con la importancia de variables (`feature_importance`) del modelo RandomForest.
+
+---
+
+### 3. Cómo ejecutar este proyecto
+
+1.  Clona el repositorio.
+2.  Instala las dependencias. Puedes crear un `requirements.txt` con:
+    ```
+    pandas
+    numpy
+    scikit-learn
+    optuna
+    matplotlib
+    seaborn
+    jupyter
+    ```
+3.  Abre el notebook `supermercado.ipynb` y ejecuta las celdas.
